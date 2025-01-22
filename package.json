@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "--passWithNoTests",
+    "test": "jest --passWithNoTests",
     "start": "webpack server --mode development",
     "build": "webpack --mode production"
   },
