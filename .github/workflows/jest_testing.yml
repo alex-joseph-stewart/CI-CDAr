@@ -12,4 +12,4 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run test # intead of npx jest because it keeps everything in sync ( if you change your jest commmandline args you only do it in one place)
+      - run: npm run test # intead of npx jest because it keeps everything in sync ( if you change your jest commmandline args you only do it in one place )
