@@ -7,9 +7,17 @@ jobs:
     name: Check Tests pass
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js  
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm run test # intead of npx jest because it keeps everything in sync ( if you change your jest commmandline args you only do it in one place )
+
+      - name: Install dependencies    
+        run: npm ci
+
+      - name: Run tests  
+        run: npm run test 
+        continue-on-error: false
