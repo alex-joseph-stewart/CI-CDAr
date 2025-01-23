@@ -2,16 +2,17 @@ on:
   push:
     branches:
       - master
+
 jobs:
   test:
     name: Check Tests pass
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # github will find a server with this operating system to run this action on
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # official github action that clones your commit onto the server
 
       - name: Set up Node.js  
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4 # official github action that installs node on the server
         with:
           node-version: 20
 
@@ -21,3 +22,6 @@ jobs:
       - name: Run tests  
         run: npm run test 
         continue-on-error: false
+
+
+         

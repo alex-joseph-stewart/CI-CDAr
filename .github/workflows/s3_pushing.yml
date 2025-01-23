@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+        - main
+
+jobs: 
+    frontend:
+        name: Deploy Frontend
+        runs-on: ubuntu-latest #github finds a fresh, clean server with ubuntu operating system to run this action on
+        steps:
+            - name: Checkout code 
+              uses: actions/checkout@v4 # official github action that clones your commit onto the server
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4 # official github action that installs node onto the server  
+              with: 
+                node-version: 23
+
+            - name: Install dependencies
+              run: npm ci # installs independencies on on server
+            
+            # need to actually build our project
+            - name: Rebuild dist files
+              run: npm run build
+
+            - name: Setup AWS CLI
+              # 'logs in' to aws with the secrets we stored in github's enviornment variables
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+                aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+                aws-region: us-east-1
+    
+            - name: Deploy files to S3 bucket
+              # uses the AWS CLI to upload the files from the 'dist' directory to our bucket
+              run: |
+                aws s3 sync dist s3://frontend-example-files  --delete 
+    
