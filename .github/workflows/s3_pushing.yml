@@ -30,6 +30,10 @@ jobs:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
                 aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
                 aws-region: us-east-1
+
+            - name: Verify AWS CLI authentication
+              run: aws sts get-caller-identity
+                  
     
             - name: Deploy files to S3 bucket
               # uses the AWS CLI to upload the files from the 'dist' directory to our bucket
