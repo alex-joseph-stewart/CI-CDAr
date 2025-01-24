@@ -2,10 +2,14 @@ on:
   push:
     branches:
         - main
+  pull_request: 
+    branches:
+        - main
 
 jobs: 
     frontend:
         name: Deploy Frontend
+        environment: AWS Deploy
         runs-on: ubuntu-latest #github finds a fresh, clean server with ubuntu operating system to run this action on
         steps:
             - name: Checkout code 
