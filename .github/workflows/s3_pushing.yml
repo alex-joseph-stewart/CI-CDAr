@@ -23,9 +23,13 @@ jobs:
             - name: Rebuild dist files
               run: npm run build
 
+            - name: dummy step
+              run: echo ${{ secrets.AWS_ACCESS_KEY }}
+            - run: echo ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
             - name: Setup AWS CLI
               # 'logs in' to aws with the secrets we stored in github's enviornment variables
-              uses: aws-actions/configure-aws-credentials@v2
+              uses: aws-actions/configure-aws-credentials@v1
               with:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
