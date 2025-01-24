@@ -6,7 +6,6 @@ on:
 jobs: 
     frontend:
         name: Deploy Frontend
-        environment: AWS Deploy
         runs-on: ubuntu-latest #github finds a fresh, clean server with ubuntu operating system to run this action on
         steps:
             - name: Checkout code 
@@ -23,10 +22,6 @@ jobs:
             # need to actually build our project
             - name: Rebuild dist files
               run: npm run build
-
-            - name: dummy step
-              run: echo ${{ secrets.AWS_ACCESS_KEY }}
-            - run: echo ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
             - name: Setup AWS CLI
               # 'logs in' to aws with the secrets we stored in github's enviornment variables
