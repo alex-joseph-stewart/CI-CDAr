@@ -21,6 +21,11 @@ module.exports = {
         test: /\.css$/, // Handle CSS files
         use: ['style-loader', 'css-loader'], // Load CSS and inject styles into the DOM
       },
+      {
+        test: /\.png$/,
+        type: 'asset/resource',
+        generator: {filename: 'images/[name][hash][ext][query]'}
+      }
     ],
   },
   devServer: {
@@ -34,7 +39,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'], // Resolve .js and .jsx extensions
+    extensions: ['.js', '.jsx', '.png'], // Resolve .js and .jsx extensions
   },
 };
 
