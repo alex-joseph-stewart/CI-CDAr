@@ -16,7 +16,7 @@ test('checks for "lobster" in the heading', async () => {
   expect(heading).toHaveTextContent('lobster')
 });
 
-test('checks for "shell" in the heading', async () => {
+test('checks for "discomfort" in the paragraph', async () => {
 
   render(<App />);
 
