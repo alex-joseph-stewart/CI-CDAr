@@ -1,8 +1,8 @@
-on:
+on: # on pushes to the master branch in Github...
   push:
     branches:
-      - master
-
+      - dev
+# ... execute the following
 jobs:
   test:
     name: Check Tests pass
@@ -14,13 +14,13 @@ jobs:
       - name: Set up Node.js  
         uses: actions/setup-node@v4 # official github action that installs node on the server
         with:
-          node-version: 20
+          node-version: 23.3
 
       - name: Install dependencies    
-        run: npm ci
+        run: npm ci # installs all the of dependencies your application needs
 
       - name: Run tests  
-        run: npm run test 
+        run: npm run test # runs your test files 
         continue-on-error: false
 
 

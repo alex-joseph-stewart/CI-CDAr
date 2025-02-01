@@ -24,7 +24,7 @@ jobs:
               run: npm run build
 
             - name: Setup AWS CLI
-              # 'logs in' to aws with the secrets we stored in github's enviornment variables
+              # 'logs in' to AWS with the secrets we stored in github's environment variables
               uses: aws-actions/configure-aws-credentials@v1
               with:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
@@ -37,6 +37,5 @@ jobs:
     
             - name: Deploy files to S3 bucket
               # uses the AWS CLI to upload the files from the 'dist' directory to our bucket
-              run: |
-                aws s3 sync dist s3://frontend-example-files  --delete 
+              run: aws s3 sync dist s3://frontend-example-files  --delete 
     
