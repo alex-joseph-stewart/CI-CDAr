@@ -1,7 +1,7 @@
 on: # on pushes to the master branch in Github...
   push:
     branches:
-      - master
+      - dev
 # ... execute the following
 jobs:
   test:
